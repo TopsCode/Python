@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<link href="{% static '/app/home.css' %}" rel="stylesheet">
+<link href="{% static '/app/floating.css' %}" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="top-container" style="color:aliceblue">
+  <h1>Trainers Board</h1>
+  <p>All Trainers Task</p>
+</div>
+
+    <div class="header" id="myHeader">
+      <h2>Welcome {{request.session.name}},</h2>
+    </div>
+  <div class="content">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Trainer Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Created at</th>
+              <th scope="col">Update at</th>
+              <th scope="col">status</th>
+              
+              
+            </tr>
+          </thead>
+          <tbody>
+              {% for item in getall %}
+              <tr> 
+                  <td>{{ item.user_id }}</td>
+                  <td>{{ item.desc }}</td>
+                  <td>{{ item.created_at }}</td>
+                  <td>{{ item.updated_at }}</td>
+                  <td>{{ item.status }}</td>
+                  
+              </tr>
+              {% endfor %}
+              
+          </tbody>
+        </table>
+    <div class="menu pmd-floating-action"  role="navigation"> 
+    <a href="{% url 'userdashboard' %}" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="My Task"> 
+      <span class="pmd-floating-hidden">supervisor_account</span>
+      <i class="material-icons" >assignment</i>
+    </a> 
+    <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add" href="javascript:void(0);"> 
+      <span class="pmd-floating-hidden">Primary</span>
+      <i class="material-icons pmd-sm" data-toggle="modal" data-target="#myModal">add</i> 
+    </a> 
+  </div>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">New Task</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              <form  id="post_task" method="POST" action="{% url 'post_task' %}" >
+                  {% csrf_token %}
+              <div class="form-group">
+                  <input type="hidden" name="addworkstatus" value="In-Progress"/>
+                  <label for="comment">Description</label>
+                  <textarea class="form-control" rows="5" name="desc"></textarea>
+              </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <input type="submit" class="btn btn-info" value="POST">
+          </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <!--<button type="button">Reload page</button>-->
+  </div>
+
+<script>
+    window.onscroll = function() {myFunction()};
+    
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
+    
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+    
+    $(document).ready(function(){
+          $("button").click(function(){
+              location.reload(true);
+          });
+      });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.top-container {
+  background-color: #238199;
+  padding: 20px;
+  text-align: center;
+}
+.container{
+  background-color: #238199;
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  padding: 10px 16px;
+  background: #5fbae9;
+  color: #080707;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
