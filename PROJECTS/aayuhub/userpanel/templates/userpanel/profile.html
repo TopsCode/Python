@@ -1,0 +1,79 @@
+<!-- Add icon library -->
+<html>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+     margin: auto;
+     text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+    text-align: left;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+     cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+  .avatar{
+    vertical-align: middle;
+    height: 200px;
+    width: 200px;
+    border-radius: 50% ;
+  }
+  .line{
+    background-color: rgb(148, 177, 167);
+    color: black;
+    text-align: center;
+    text-align: left;
+  }
+
+
+</style>
+</head>
+ 
+<div class="card">
+  <img src="{{uid.profile_pic.url}}" alt="John" class="avatar" >
+  <h1>{{uid.username}}</h1>
+  <p class="line">&nbsp;&nbsp;Contact detail</p>
+
+  <p class="title">&nbsp;&nbsp;Email:&nbsp;&nbsp;&nbsp;{{uid.email}}</p>
+  <p class="title">&nbsp;&nbsp;Contact:&nbsp;&nbsp;&nbsp;{{uid.mobile}}</p>
+  
+  <p class="line">&nbsp;&nbsp;Shop detail</p>
+  <p class="title">&nbsp;&nbsp;Shop:&nbsp;&nbsp;&nbsp;{{uid.shop}}</p>
+  <p class="title">&nbsp;&nbsp;Address:&nbsp;&nbsp;&nbsp;{{uid.Address}}</p>
+
+  <p class="line">&nbsp;&nbsp;Account detail</p>
+  <p class="title">&nbsp;&nbsp;Created_at:&nbsp;&nbsp;&nbsp;{{uid.create_at}}</p>
+  <p class="title">&nbsp;&nbsp;Updated_at:&nbsp;&nbsp;&nbsp;{{uid.updated_at}}</p>
+
+  <a href="#"><i class="fa fa-dribbble"></i></a> 
+  <a href="#"><i class="fa fa-twitter"></i></a> 
+  <a href="#"><i class="fa fa-linkedin"></i></a> 
+   <a href="#"><i class="fa fa-facebook"></i></a> 
+  <a href="{% url 'edit-profile' %}"><p><button>Edit Profile</button></p></a>
+</div>
+</html>

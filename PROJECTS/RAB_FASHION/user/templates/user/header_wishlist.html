@@ -1,0 +1,84 @@
+{% load static %}
+<li>
+    <a href="{% url 'wishlist' %}" title="">
+        <span class="count rounded-crcl">{{request.session.wishlist_length}}</span>
+        <i class="pe-7s-like icon"></i>
+    </a>
+
+    <!--
+    {% if request.session.wishlist_length > 0 %}
+    <div class="dropdown-menu widget woocommerce widget_shopping_cart">
+        <div class="widget_shopping_cart_content">
+            <h6 class="title">Your Wishlist ({{request.session.wishlist_length}} Items)</h6>
+            <ul class="cart_list product_list_widget ">
+                {% for wishlist_item in request.session.wishlist_data %}
+                <li class="mini_cart_item">
+                    <table>
+                        <tr>
+                            <td class="figure">
+                                <figure>
+                                    <img src="{{wishlist_item.product.image.url}}" alt="">
+                                </figure>
+                            </td>
+
+                            <td class="content">
+                                <a href="#" class="remove" title="Remove this item">
+                                    <i class="fa fa-close"></i>
+                                </a>
+
+                                <h6 class="product-title">
+                                    {{wishlist_item.product.productManager}} : {{wishlist_item.product.title}}
+                                </h6>
+
+                                <ul class="product-info m-0">
+                                    <li>Price : Rs {{wishlist_item.product.price}}</li>
+                                </ul>
+                                <a href="#" class="btn btn-default btn-bg text-uppercase">add to cart</a>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                {% endfor %}
+                
+
+                <li class="mini_cart_item">
+                    <table>
+                        <tr>
+                            <td class="figure">
+                                <figure>
+                                    <img src="{% static 'user\assets\images\cart-widget-product.jpg' %}" alt="">
+                                </figure>
+                            </td>
+
+                            <td class="content">
+                                <a href="#" class="remove" title="Remove this item">
+                                    <i class="fa fa-close"></i>
+                                </a>
+
+                                <h6 class="product-title">
+                                    Ladies black formal jacket
+                                </h6>
+
+                                <ul class="product-info m-0">
+                                    <li>Price : $189.00</li>
+                                </ul>
+                                <a href="#" class="btn btn-default btn-bg text-uppercase">add to cart</a>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                
+
+            </ul>
+            
+
+            <div class="buttons">
+                <a href="#" class="button">view cart</a>
+                <a href="#" class="button checkout">checkout</a>
+            </div>
+            
+        </div>
+    </div>
+    {% endif %}
+    -->
+</li>

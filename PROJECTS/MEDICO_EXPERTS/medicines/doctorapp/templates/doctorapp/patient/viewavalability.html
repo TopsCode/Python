@@ -1,0 +1,95 @@
+{% extends "doctorapp/patient/pindex.html" %}
+
+{% block content %}
+    <section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Payments <small class="text-muted">Welcome to Oreo</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                                                            <li class="breadcrumb-item">Payment</li>
+                                                                                        <li class="breadcrumb-item active">Payments</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Dr. {{doctor.firstname}} availabilities :</strong> </h2>
+                    <ul class="header-dropdown">
+                        <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-right slideUp float-right">
+                                <li><a href="javascript:void(0);">Action</a></li>
+                                <li><a href="javascript:void(0);">Another action</a></li>
+                                <li><a href="javascript:void(0);">Something else</a></li>
+                            </ul>
+                        </li>
+                        <li class="remove">
+                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Available Date</th>
+                                    <th>Start time</th>
+                                    <th>Status</th>                                            
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in a_id %}
+                                <tr>
+                                    <form action="{% url 'appointment'%}" method="POST">
+                                        {% csrf_token %}                                       
+                                    <td>{{item.id}}
+
+                                    
+                                    </td>
+                                    <td>{{item.avail_date}}</td>
+                                    <td>{{item.start_time}}</td>
+                                   {%   if item.status %}
+                                            <td>Booked</td>
+                                    {% else %}
+                                        <td>Available</td>
+                                    {% endif%}
+                                            
+                                        
+
+                                    <td> 
+                                        <input type="hidden" name="doctorid" value="{{item.doctor_id}}"/>
+                                        <input type="hidden" name="avail_date" value="{{item.avail_date}}"/>
+                                        <input type="hidden" name="time" value="{{item.start_time}}"/>
+                                        <input type="hidden" name="avail_id" value="{{item.id}}"/>
+                                            
+                                        <button type="submit" class="btn btn-primary btn-round">Book Now</button></td></form>
+                                </tr>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table></form>
+                    </div>
+                </div>              
+            </div>
+        </div>
+    </div>
+
+            </div>
+        </section>
+        {% endblock%}

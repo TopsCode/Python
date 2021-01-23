@@ -1,0 +1,112 @@
+﻿{% extends 'user\base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <nav class="woocommerce-breadcrumb mb-20"></nav>
+    </div>
+</div>
+<!--bread crumb-->
+
+{% if wishlist_data %}
+
+<section class="cart-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="woocommerce">
+                    <table class="shop_table shop_table_responsive cart wish-list">
+                        <thead>
+                            <tr>
+                                <th class="product-name">Product Detail</th>
+                                <th class="product-price">Color</th>
+                                <th class="product-status">Size</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-subtotal"></th>
+                                <th class="product-remove"> </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for wishlist in wishlist_data %}
+                        <form method = "POST" action = "{% url 'wishlist_to_cart' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{wishlist.id}}" name="wishlist_id" />
+                            <input type="hidden" value="{{wishlist.product.id}}" name="product_id" />
+                            <tr class="cart_item">
+                                <td class="product-name" data-title="Product">
+                                    <a href="{% url 'product_single' id=wishlist.product.id title=wishlist.product.title %}" class="cart-product">
+                                        <img style="max-width:25%" src="{{wishlist.product.image.url}}" alt="Product thumbnail">
+                                    </a>
+
+                                    <div class="product-info">
+                                        <h6> {{wishlist.product.title}}  </h6>
+                                        <h6> Brand : {{wishlist.product.productManager}}  </h6>
+                                        <ul class="product-info">
+                                            <li>Category: {{wishlist.product.category}}, {{wishlist.product.subcategory}} </li>
+                                            <li>Price: {{wishlist.product.price}} </li>
+                                        </ul>
+                                    </div>
+                                    <!--product info-->
+                                </td>
+
+                                <td>
+                                    <select name="color" required>
+                                        <option value="" disabled selected>Select Color</option>
+                                        {% for color in wishlist.product.available_colors.all %}
+                                        <option value="{{color}}">{{color}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <select name="size" required>
+                                        <option value="" disabled selected>Select Size</option>
+                                        {% for size in wishlist.product.available_sizes.all %}
+                                        <option value="{{size}}">{{size}}</option>
+                                        {% endfor %}
+                                    </select> 
+                                </td>
+
+                                <td class="product-quantity" data-title="Quantity">
+                                    <div class="quantity-wrap">
+                                        <span class="minus"> - </span>
+                                        <input type="number" value="1" name="quantity" title="Qty" class="input-text qty" size="4">
+                                        <span class="add"> + </span>
+                                    </div>
+                                </td>
+
+                                <td class="product-subtotal" data-title="Shop">
+                                    {% if wishlist.product.stock > 0 %}
+                                    <input type="submit" style="background-color: #e56d8e; color: #fff; line-height:1;border-radius: 0;padding: 0.78em 1.5em;font-size: 15px;font-weight: 400;" value="Add to Cart">
+                                    {% else %}
+                                    <h6>Out of stock</h6>
+                                    {% endif %}
+                                </td>
+
+                                <td class="product-remove" data-title="Remove">
+                                    <a href="{% url 'remove_from_wishlist' wishlist_id=wishlist.id %}" class="remove" title="Remove this item">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <!--cart item--> 
+                        </form>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% else %}
+<div class="container">
+<h1>The wishlist is empty.</h1>
+</div>
+{% endif %}
+
+{% endblock content %}

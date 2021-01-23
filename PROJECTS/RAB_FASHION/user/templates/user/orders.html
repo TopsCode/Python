@@ -1,0 +1,81 @@
+{% extends 'user\base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <nav class="woocommerce-breadcrumb mb-20"></nav>
+    </div>
+</div>
+<!--bread crumb-->
+
+<section class="cart-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="woocommerce">
+                    <table class="shop_table shop_table_responsive cart wish-list">
+                        <thead>
+                            <tr>
+                                <th class="product-name">My Orders</th>
+                                <th class="product-price">Address</th>
+                                <th class="product-quantity">Payment</th>
+                                <th class="product-subtotal"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for order in orders %}
+                        <tr class="cart_item">
+                            <td class="product-name" data-title="Product">
+                                <div class="product-info">
+                                    <h6> Title  </h6>
+                                    <h6> Brand  </h6>
+                                    <ul class="product-info">
+                                        <li>Order date: {{order.order_date}} </li>
+                                        <li>Status: {{order.status}} </li>
+                                    </ul>
+                                </div>
+                                <!--product info-->
+                            </td>
+
+                            <td>
+                                <p>
+                                {{order.address.name}}<br/>
+                                {{order.address.address_line_1}}<br/>
+                                {{order.address.address_line_2}}<br/>
+                                {{order.address.city}}, {{order.address.state}},<br/>
+                                {{order.address.country}}, PIN-{{order.address.zip_code}}<br/>
+                                Mob.: {{order.address.contact_no}}
+                                </p>
+                            </td>
+
+                            <td>
+                                Payment method: {{order.payment.payment_method}}<br/>
+                                Amount: {{order.payment.amount}}<br/>
+                                {{order.payment.payment_date}}
+                            </td>
+
+                            <td class="product-subtotal" data-title="Shop">
+                                <form action="{% url 'order_single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="order_id" value="{{order.id}}" />
+                                <input type="submit" style="background-color: #e56d8e; color: #fff; line-height:1;border-radius: 0;padding: 0.78em 1.5em;font-size: 15px;font-weight: 400;" value="View Order">
+                                </form>
+                            </td>
+
+                        </tr>
+                        <!--cart item--> 
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

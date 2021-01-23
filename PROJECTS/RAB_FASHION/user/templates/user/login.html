@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <title>RAB Fashion</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Food Blog Web Template">
+	<meta name="keywords" content="food, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->   
+	<link rel="shortcut icon" type="image/png" href={% static "user\assets\images\fav.jpg" %}>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700" rel="stylesheet">
+
+	<!-- Stylesheets -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="{% static 'user/assets/css/loginstyle.css' %}" rel="stylesheet" id="bootstrap-css">
+
+</head>
+<body>
+
+<div class="login-reg-panel">
+							
+		<div class="register-info-box">
+			<h2>Don't have an account?</h2>
+			<p>Join now</p>
+			<label id="label-login" for="log-login-show">
+				<a href="{% url 'register' %}">Register</a>
+			</label>
+		</div>
+							
+		<div class="white-panel">
+			<div class="login-show">
+				<h2>LOGIN</h2>
+                <form action="{% url 'login_user' %}" method="POST">
+				{% csrf_token %}
+				<input type="email" placeholder="Email" name="email" value="{{cookie_data.email}}" required>
+				<input type="password" placeholder="Password" name="password" value="{{cookie_data.password}}" required>
+				<label>Remember Me</label> 
+				<input type="checkbox" name="checked" value="1" {% if cookie_data.email %}checked{% endif %}>
+				<input type="submit" value="Login">
+                </form>
+				<a href="{% url 'forget_password' %}">Forgot password?</a>				
+			</div>
+			{% if success_message %}
+			<div class="alert alert-success" role="alert">{{success_message}}</div>
+			{% endif %}
+			{% if error_message %}
+			<div class="alert alert-danger" role="alert">{{error_message}}</div>
+			{% endif %}
+		</div>
+</div>
+
+<body>
+</html>

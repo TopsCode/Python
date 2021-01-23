@@ -1,0 +1,163 @@
+﻿{% extends 'user\base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <nav class="woocommerce-breadcrumb mb-20"></nav>
+    </div>
+</div>
+<!--bread crumb-->
+
+<form  method="POST" action="{% url 'filter' %}">
+    {% csrf_token %}
+    <div class="product-list">
+        <div class="container">
+            <div class="row">
+                {% if products %}
+                <div class="col-md-9 col-sm-9 col-xs-12 pull-right">
+                    <div class="storefront-sorting">
+                        <div class="woocommerce-ordering">
+                            <select name="orderby" class="orderby">
+                                {% if orderby == "default" %}<option value="default" selected>Default sorting</option>
+                                {% else %}<option value="menu_order">Default sorting</option>{% endif %}
+                                
+                                {% if orderby == "date" %}<option value="date" selected>Sort by newness</option>
+                                {% else %}<option value="date">Sort by newness</option>{% endif %}
+                                
+                                {% if orderby == "price" %}<option value="price" selected>Sort by price: low to high</option>
+                                {% else %}<option value="price">Sort by price: low to high</option>{% endif %}
+                                
+                                {% if orderby == "price-desc" %}<option value="price-desc" selected>Sort by price: high to low</option>
+                                {% else %}<option value="price-desc">Sort by price: high to low</option>{% endif %}
+                            </select> 
+                        </div>
+
+                        <div class="woocommerce-result-count">
+                            Showing {{quantity}} results
+                        </div>
+                        <!--result-->
+
+                    </div>
+                    <!--storefront-sorting-->
+
+                    <ul class="products clearfix">
+                        {% for product in products %}
+                        <li class="product last" style="margin-right: 20px">
+                            <figure>
+                                <div class="icons">
+                                    <a href="{% url 'add_to_wishlist' product_id=product.id %}" class="btn"><i class="pe-7s-like"></i></a>
+                                </div>
+                                <!--icons-->
+                                
+                                <div class="product-wrap base-align">
+                                    <a href="{% url 'product_single' id=product.id title=product.title %}">&nbsp;</a>
+                                    <img src="{{product.image.url}}" alt="Product">
+                                </div>
+                            </figure>
+                            <!--figure-->
+
+                            <div class="content">
+                                <h6><a href="#">{{product.title}}</a></h6>
+                                <h6><a href="#">{{product.productManager.company_name}}</a></h6>
+                                <div class="bottom">
+                                    <div class="price">
+                                        <ins>Rs. {{product.price}}</ins>
+                                    </div>
+                                    <!--price-->
+
+                                    <span class="star-rating">
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star-half-empty "></i> 
+                                    </span>
+                                    <!--star-->
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        <!--single product-->
+                    </ul>
+                    <!--product list-->
+                </div>
+                <!--left-->
+
+                <input type="hidden" name="category" value="{{category}}" />
+                <div class="col-md-3 col-sm-3 col-xs-12 sidebar shop-sidebar left-block">
+                    <div class="box mb-30">
+                        <h5 class="sec-title">Categories</h5>
+                        <ul class="shop-sidebar">
+                            {% for subcategory, quantity in subcategories %}
+                            <li>
+                                {% if subcategory in selected_subcategories %}
+                                    <input type="checkbox" checked name="subcategories" value="{{subcategory}}">
+                                {% else %}
+                                    <input type="checkbox" name="subcategories" value="{{subcategory}}">
+                                {% endif %}
+                                <a>{{subcategory}} <span class="no">[{{quantity}}]</span></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!--category-->
+
+                    <div class="box mb-30">
+                        <h5 class="sec-title">Brands</h5>
+                        <ul class="shop-sidebar">
+                            {% for brand, quantity in brands %}
+                            <li>
+                                {% if brand in selected_brands %}
+                                    <input type="checkbox" checked name="brands" value="{{brand}}">
+                                {% else %}
+                                    <input type="checkbox" name="brands" value="{{brand}}">
+                                {% endif %}
+                                <a>{{brand}} <span class="no">[{{quantity}}]</span></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!--brands-->
+
+                    <div class="box mb-30">
+                        <h5 class="sec-title">Colors</h5>
+                        <ul class="shop-sidebar">
+                            {% for color in colors %}
+                            <li>
+                                {% if color.name in selected_colors %}
+                                    <input type="checkbox" checked name="colors" value="{{color.name}}">
+                                {% else %}
+                                    <input type="checkbox" name="colors" value="{{color.name}}">
+                                {% endif %}
+                                <a>{{color.name}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!--colors-->
+
+                    <div class="box mb-30">
+                        <h5 class="sec-title">Price</h5>
+                            <div id="slider-range"></div>
+                            <input type="hidden" name="min_price" value="0" id="amount1">
+                            <input type="hidden" name="max_price" value="10000" id="amount2">
+                            <div id="amount" class="mb-45"></div>
+
+                            <input type="submit" class=" btn btn-default filter-btn faa-parent animated-hover" value="filter now" />
+                    </div>
+                    <!--price-->
+
+                </div>
+                <!--right-->
+                {% else %}
+                    <h6>No products to display</h6>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
+

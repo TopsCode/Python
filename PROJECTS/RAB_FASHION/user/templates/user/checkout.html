@@ -1,0 +1,424 @@
+﻿{% extends 'user\base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+
+    /**
+    * The CSS shown here will not be introduced in the Quickstart guide, but shows
+    * how you can use CSS to style your Element's container.
+    */
+    .StripeElement {
+    box-sizing: border-box;
+
+    height: 40px;
+
+    padding: 10px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+    border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+    }
+
+</style>
+
+
+<section class="checkout-steps">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="wrap first active">
+                    <span class="circle rounded-crcl"> 01 </span>
+                    <h6>Shopping Cart</h6>
+                </div>
+                <!--steps-->
+                <div class="wrap second active">
+                    <span class="circle rounded-crcl"> 02 </span>
+                    <h6>Check Out</h6>
+                </div>
+                <!--steps-->
+                <div class="wrap final full">
+                    <span class="circle rounded-crcl"> 03 </span>
+                    <h6>Order Complete</h6>
+                </div>
+                <!--steps-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--check out steps-->
+
+<section class="cart-block p-pb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="woocommerce">
+                    <form action="{% url 'place_order' %}" method="POST" id="payment-form" name="checkout" class="checkout woocommerce-checkout">
+                        {% csrf_token %}
+                        <input type="hidden" name="grand_total" value="{{grand_total}}" />
+                        <div class="col2-set" id="customer_details">
+                            <div class="col-1">
+                                <div class="woocommerce-billing-fields">
+                                    <h3>Billing Details</h3>
+                                    <div class="form-row form-row form-row-wide">
+                                        <label>Country
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <select name="country" requeird>
+                                            <option value="" selected disabled>Choose a country…</option>
+                                            <option value="india">India</option>
+                                        </select>
+                                    </div>
+                                    <!--country-->
+
+                                    <div class="form-row form-row form-row-first">
+                                        <label>First Name
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <input type="text" name="first_name" required placeholder="First Name">
+                                    </div>
+                                    <!--first name-->
+
+                                    <div class="form-row form-row form-row-last">
+                                        <label>Last Name
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <input type="text" name="last_name" required placeholder="Last Name">
+                                    </div>
+                                    <!--last name-->
+
+                                    <div class="form-row form-row form-row-wide">
+                                        <label>Address
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <input type="text" name="address_line_1" required placeholder="Street Address">
+                                        <input type="text" name="address_line_2" required placeholder="Apartment, Suite, Unit etc">
+                                    </div>
+                                    <!--address name-->
+
+                                    <div class="form-row form-row form-row-first">
+                                        <label>Town / City
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <input type="text" name="city" required placeholder="Town / City">
+                                    </div>
+                                    <!--town-->
+
+                                    <div class="form-row form-row form-row-last">
+                                        <label>State / Proviance
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <input type="text" name="state" required placeholder="State / Proviance">
+                                    </div>
+                                    <!--city-->
+
+                                    <div class="clear"></div>
+                                    <div class="form-row form-row form-row-first">
+                                        <label>TPostcode / Zip
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <input type="number" name="zip_code" required placeholder="Postcode / Zip">
+                                    </div>                                            
+                                    <!--zip-->
+
+                                    <div class="form-row form-row form-row-last">
+                                        <label>Phone Number
+                                            <abbr class="required">*</abbr>
+                                        </label>
+                                        <input type="number" name="number" required placeholder="Phone Number">
+                                    </div>
+                                    <!--postanl-->
+
+                                </div>
+                            </div>
+                            <!--col 1-->
+
+                            <div class="col-2">
+                                <div class="woocommerce-shipping-fields">
+                                    <h3 id="ship-to-different-address"> Ship to a different address? 
+    
+                                        <span class="checkbox-wrap">
+                                            <input type="checkbox" value="1" id="ship-to-different-address-checkbox">
+                                            <label>&nbsp;</label>
+                                        </span> 
+                                    </h3>
+
+                                    <div class="shipping_address">
+                                        <div class="form-row form-row form-row-wide">
+                                            <label>Country
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <select>
+                                                <option value="" selected disabled>Choose a country…</option>
+                                                <option value="india">India</option>
+                                            </select>
+                                        </div>
+                                        <!--country-->
+
+                                        <div class="form-row form-row form-row-first">
+                                            <label>First Name
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <input type="text" placeholder="First Name">
+                                        </div>
+                                        <!--first name-->
+
+                                        <div class="form-row form-row form-row-last">
+                                            <label>Last Name
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <input type="text" placeholder="Last Name">
+                                        </div>
+                                        <!--last name-->
+
+                                        <div class="form-row form-row form-row-wide">
+                                            <label>Address
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <input type="text" placeholder="Street Address">
+                                            <input type="text" placeholder="Apartment, Suite, Unit etc">
+                                        </div>
+                                        <!--address name-->
+
+                                        <div class="form-row form-row form-row-first">
+                                            <label>Town / City
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <input type="text" placeholder="Town / City">
+                                        </div>
+                                        <!--town-->
+
+                                        <div class="form-row form-row form-row-last">
+                                            <label>State / Proviance
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <input type="text" placeholder="State / Proviance">
+                                        </div>
+                                        <!--city-->
+
+                                        <div class="clear"></div>
+                                        <div class="form-row form-row form-row-first">
+                                            <label>TPostcode / Zip
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <input type="text" placeholder="Postcode / Zip">
+                                        </div>
+                                        <!--zip-->
+
+                                        <div class="form-row form-row form-row-last">
+                                            <label>Phone Number
+                                                <abbr class="required">*</abbr>
+                                            </label>
+                                            <input type="text" placeholder="Phone Number">
+                                        </div>
+                                        <!--postanl-->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--col set-->
+
+                        <div id="order_review" class="woocommerce-checkout-review-order">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <h3 id="order_review_heading">Your order</h3>
+                                    <table class="shop_table woocommerce-checkout-review-order-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Product Details</th>
+                                                <th class="product-total">Total (Rs.)</th>
+                                            </tr>
+                                        </thead>
+                                        <!--head-->
+
+                                        <tbody>
+                                            {% for cart in cart_data %}
+                                            <tr class="cart_item">
+                                                <td class="product-name" data-title="Product">
+                                                    {{cart.product.productManager}} : {{cart.product.title}} &nbsp; <span class="product-quantity">{{cart.product.price}} × {{cart.quantity}}</span> </td>
+                                                <td class="product-total" data-title="Total">
+                                                    {{cart.total}}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <!--t body-->
+
+                                        <tfoot>
+                                            <tr class="cart-subtotal">
+                                                <td>Cart Sub-total</td>
+                                                <td>{{sub_total}}
+                                                </td>
+                                            </tr>
+                                            <tr class="shipping">
+                                                <td>Shipping + Handling</td>
+                                                <td data-title="Shipping">
+                                                    18
+                                                </td>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th>Order Totals</th>
+                                                <th>{{grand_total}}</th>
+                                            </tr>
+                                        </tfoot>
+                                        <!--t foot-->
+                                    </table>
+                                </div>
+                                <!--order detail-->
+
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <h3>Payment Methods</h3>
+
+                                    <div id="payment" class="woocommerce-checkout-payment">
+                                        <ul class="wc_payment_methods payment_methods methods">
+
+                                            <li class="wc_payment_method payment_method_cheque">
+                                                <input type="radio" disabled name="payment_method" value="bacs">
+                                                <label> Check Payments </label>
+                                            </li>
+
+                                            <li class="wc_payment_method payment_method_cod">
+                                                <input type="radio" disabled name="payment_method" value="bacs">
+                                                <label> Cash on Delivery </label>
+                                            </li>
+
+                                            <li class="wc_payment_method payment_method_ppec_paypal">
+                                                <input type="radio" disabled name="payment_method" value="bacs">
+                                                <label> PayPal <img src="{% static 'user\assets\images\paypal.jpg' %}" alt="">
+                                                </label>
+                                            </li>
+
+                                            <li class="wc_payment_method payment_method_ppec_paypal"  for="card-element">
+                                                <input type="radio" checked name="payment_method" value="bacs">
+                                                <div class="form-row">
+                                                    <label for="card-element">
+                                                    Credit or debit card
+                                                    </label>
+                                                    <div id="card-element">
+                                                    <!-- A Stripe Element will be inserted here. -->
+                                                    </div>
+
+                                                    <!-- Used to display form errors. -->
+                                                    <div id="card-errors" role="alert"></div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+
+                                        <div class="form-row form-row-wide create-account woocommerce-validated">
+                                            <div class="checkbox-wrap">
+                                                <label class="checkbox">Terms & conditions apply *</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--payment-->
+                            </div>
+                        </div>
+                        <!--review-->
+
+                        <div class="text-center">
+                            <input type="submit" class="button alt" value="place an order">  
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+
+    // Create a Stripe client.
+    var stripe = Stripe('pk_test_51H6Z0NHgH8Wg1iQu1EErDmZs6heWsS6gKKENPW4CHmuoIV5UGSbB8xDm7U4163Y6RTidYMDFamD7Fn6RVTGxJsPa00YnBR3S3O');
+
+    // Create an instance of Elements.
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+    base: {
+        color: '#32325d',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+        color: '#aab7c4'
+        }
+    },
+    invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+    }
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.on('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+    });
+
+    // Handle form submission.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+        if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+        } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+        }
+    });
+    });
+
+    // Submit the form with the token ID.
+    function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+    }
+
+</script>
+
+{% endblock content %}

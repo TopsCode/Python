@@ -1,0 +1,249 @@
+{% extends "doctorapp/dashboard/index.html" %}
+
+
+{% block content %}   
+<section class="content home">
+            <div style ="background-color: black;" class="block-header">
+                <div style="" class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Profile <small class="text-muted">Welcome to Oreo</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                                                    <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                                                            <li class="breadcrumb-item">Doctors</li>
+                                                            <li class="breadcrumb-item active">Profile</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix profile-page">
+        <div class="col-lg-4 col-md-12">
+            <div class="card profile-header">
+                <div class="body text-center">
+                    <div class="profile-image"> <img src="{{did.profile_pic.url}}" alt=""> </div>
+                    <div>
+                        <h4 class="m-b-0"><strong>{{did.firstname}}</strong> <strong>{{did.lastname}}</strong></h4>
+                        <span class="job_post">{{did.speciality}}</span>
+                        <p></p>
+                    </div>
+                    <div>
+                       
+                        <button class="btn btn-primary btn-round btn-simple">Message</button>
+                    </div>
+                    <p class="social-icon m-t-5 m-b-0">
+                        <a title="Twitter" href="javascript:void(0);"><i class="zmdi zmdi-twitter"></i></a>
+                        <a title="Facebook" href="javascript:void(0);"><i class="zmdi zmdi-facebook"></i></a>
+                        <a title="Google-plus" href="javascript:void(0);"><i class="zmdi zmdi-twitter"></i></a>
+                        <a title="Behance" href="javascript:void(0);"><i class="zmdi zmdi-behance"></i></a>
+                        <a title="Instagram" href="javascript:void(0);"><i class="zmdi zmdi-instagram "></i></a>
+                    </p>
+                </div>                    
+            </div>                               
+            <div class="card">
+                <div class="body">
+                    <div class="workingtime">
+                        <h6>Working Time</h6>
+                        <small class="text-muted">Tuesday</small>
+                        <p>06:00 AM - 07:00 AM</p>
+                        <hr>
+                        <small class="text-muted">Thursday</small>
+                        <p>06:00 AM - 07:00 AM</p>
+                        <hr>
+                    </div>
+                    
+                </div>
+            </div>
+                 
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">Myprofile</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Account">Edit Profile</a></li>                        
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane body active" id="about">
+                        <p>{{did.about_doc}}</p>
+                        
+                        <hr>
+                        <ul class="list-unstyled">
+                            <li>
+                                <p><strong>Speciality:</strong>{{did.speciality}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Mobile :</strong>{{did.mobile}}</p>
+                            </li>
+                            
+                            <li>
+                                <p><strong>clinic:</strong> {{did.clinic}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Address:</strong>{{did.address}}</p>
+                            </li>
+                            
+                            <li>
+                                <p><strong>Gender:</strong> {{did.gender}}</p>
+                            </li>
+                           
+                            
+                        </ul>
+                        
+                    </div>
+                    <div class="tab-pane body" id="Account">
+                                            
+                    <form action="update_profile" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" class="form-control" placeholder="Your Email *" value="{{request.session.email}}" required=""  name="email"/>
+                        <div class="form-group">
+                            <input type="file" class="form-control" placeholder="Upload file " name="pic">
+                                
+                            <br>
+                            <input type="text" class="form-control" placeholder="About Yourself" name="about" value="{{did.about_doc}}">
+
+                        </div>
+                        <!-- <div class="row clearfix">
+                                <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Your description" name="about_doc">                                            
+                                        </div>
+                                    </div>&nbsp; -->
+                                <div class="row clearfix">
+
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                         <input type="text" class="form-control" placeholder="First Name" name="firstname" value="{{did.firstname}}" >
+                                    </div>
+                                </div>
+    
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Last Name" name="lastname" value="{{did.lastname}}">
+                                </div>
+                            </div>                                   
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="City" name="city" value="{{did.city}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="E-mail" value="{{did.email}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="state" name="state" value="{{did.state}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Qualification" name="qlf" value="{{did.qualification}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="speciality" name="spec" value="{{did.speciality}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="clinic name" name="clinic" value="{{did.clinic}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group m-b-10">
+                                    <textarea rows="4" class="form-control no-resize" placeholder="Clinic Address Line 1" name="address" value="{{did.address}}"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Mobile Number" name="phone" value="{{did.mobile}}">
+                                </div>
+                            </div><div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Gender" name="gender" value="{{did.gender}}">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <button class="btn btn-primary btn-round" >Update profile</button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Current Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="New Password">
+                        </div>
+                        <button class="btn btn-info btn-round">Save Changes</button>
+                    </div>
+                    </form>
+                    </div>                        
+                </div>
+                
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Recent</strong> Activity</h2>
+                    <ul class="header-dropdown">
+                        <li class="remove">
+                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body user_activity">
+                    <div class="streamline b-accent">
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar4.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">Admin Birthday</h5>
+                                <small>Jan 21 <a href="javascript:void(0);" class="text-info">Sophia</a>.</small>
+                            </div>
+                        </div>
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar5.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">Add New Contact</h5>
+                                <small>30min ago <a href="javascript:void(0);">Alexander</a>.</small>
+                                <small><strong>P:</strong> +264-625-2323</small>
+                                <small><strong>E:</strong> maryamamiri@gmail.com</small>
+                            </div>
+                        </div>
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar6.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">General Surgery</h5>
+                                <small>Today <a href="javascript:void(0);">Grayson</a>.</small>
+                                <small>The standard chunk of Lorem Ipsum used since the 1500s is reproduced</small>
+                            </div>
+                        </div>
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar7.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">General Surgery</h5>
+                                <small>45min ago <a href="javascript:void(0);" class="text-info">Fidel Tonn</a>.</small>
+                                <small><strong>P:</strong> +264-625-2323</small>
+                                <small>The standard chunk of Lorem Ipsum used since the 1500s is reproduced used since the 1500s is reproduced</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>               
+        </div>
+    </div>
+</div>
+</section>
+        {% endblock %}

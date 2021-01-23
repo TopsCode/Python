@@ -1,0 +1,103 @@
+{% extends "doctorapp/dashboard/index.html" %}
+
+
+{% block content %}
+
+
+<section class="content home">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2> Mark Availiability <small class="text-muted">Welcome to Medico-Experts</small></h2>
+                </div>            
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                    
+                    
+                    
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                                                        <li class="breadcrumb-item">Appointment</li>
+                                                                                    <li class="breadcrumb-item active">Book Appointment</li>
+                                                </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">                
+            
+    <div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+        <div class="header">
+            <h2><strong>Availiability</strong> Appointment<small>Description text here...</small> </h2>
+            <ul class="header-dropdown">                            
+                <li class="remove">
+                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <form action="{% url 'store-all-availabilities' %}" method="POST">
+                {% csrf_token %}
+            <div class="row clearfix">
+                    <div class="col-sm-3">
+                            <h6>Start Date </h6>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-calendar"></i>
+                                </span>
+                                
+                                <!-- <input type="text" class="form-control datetimepicker" placeholder="Please choose date & time..."> -->
+                                <input type="date" class="form-control datetimepicker" placeholder="Please choose date & time..." name="start_date" >
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                                <h6>End Date </h6>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="zmdi zmdi-calendar"></i>
+                                    </span>
+                                    
+                                    <!-- <input type="text" class="form-control datetimepicker" placeholder="Please choose date & time..."> -->
+                                    <input type="date" class="form-control datetimepicker" placeholder="Please choose date & time..." name="end_date" >
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                    <h6>Start Time</h6>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="zmdi zmdi-calendar"></i>
+                                        </span>
+                                        
+                                        <!-- <input type="text" class="form-control datetimepicker" placeholder="Please choose date & time..."> -->
+                                        <input type="text" class="form-control datetimepicker" placeholder="start time" name="start_time" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                        <h6>End Time </h6>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="zmdi zmdi-calendar"></i>
+                                            </span>
+                                            
+                                            <!-- <input type="text" class="form-control datetimepicker" placeholder="Please choose date & time..."> -->
+                                            <input type="text" class="form-control datetimepicker" placeholder="end time" name="end_time">
+                                        </div>
+                                    </div>
+            </div>
+           
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                    <button type="submit" class="btn btn-default btn-round btn-simple">Cancel</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    </section>
+
+{% endblock %}

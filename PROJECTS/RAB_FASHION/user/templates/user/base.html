@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <title>RAB Fashion</title>
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href={% static "user\assets\images\fav.jpg" %}>
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,400i,700,700i%7CMr+Dafoe%7CPoppins:300,400,500,600,700" rel="stylesheet"> 
+
+    <!-- CSS LIBRARY -->
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\bootstrap.min.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\animate.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\font-awesome.min.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\font-awesome-animation.min.css" %}> 
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\jquery-ui.min.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\jquery.bxslider.css" %}> 
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\pe-icon-7-stroke.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\font.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\colorbox.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\menu.css" %}>  
+
+    <!-- Main css -->
+    <link rel="stylesheet" type="text/css" href={% static "user\style.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\responsive.css" %}>
+
+    <!-- color skin -->
+    <link rel="stylesheet" type="text/css" href={% static "user\assets\css\color-skin\default.css" %}>
+
+</head>
+
+<body class="single-product">
+    {% include 'user\header.html' %}
+    <!--header-->
+
+    {% block banner %}
+    {% endblock banner %}
+    <!--main banner-->
+
+    <main class="main primary-padding">
+        {% block content %}
+        {% endblock content %}
+    </main>
+    <!--main--> 
+
+    {% include 'user\footer.html' %}
+    <!--footer-->
+
+    <!-- back to top-->
+    <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+
+    <script src={% static "user\assets\js\jquery-3.1.1.min.js" %}></script>
+    <script src={% static "user\assets\js\bootstrap.min.js" %}></script>
+    <script src={% static "user\assets\js\modernizr.js" %}></script>
+    <script src={% static "user\assets\js\jquery-ui.js" %}></script>
+    <script src={% static "user\assets\js\jquery-ui-touch-punch.js" %}></script>
+    <script src={% static "user\assets\js\masonry.pkgd.min.js" %}></script>
+    <script src={% static "user\assets\js\jquery.bxslider.min.js" %}></script>
+    <script src={% static "user\assets\js\jquery.colorbox-min.js" %}></script>
+    <script src={% static "user\assets\js\wow.min.js" %}></script>
+    <script src={% static "user\assets\js\parallax.js" %}></script>
+    <script src={% static "user\assets\js\jquery.dlmenu.js" %}></script>   
+    <script src={% static "user\assets\js\jquery.countdown.min.js" %}></script>
+    <script src={% static "user\assets\js\main.js" %}></script>
+    <!--javascript-->
+    
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'my_app/base_index.html'%}
+
+{% block content%}
+
+
+<div class="register">
+    <div class="container">
+        <h2>Register Here</h2>
+        <div class="login-form-grids">
+                <form action="{% url 'send-otp' %}" method="post">
+                        {% csrf_token %}
+                        <div>
+                                <input type="email" placeholder="Your Email *" required="" name="email"/>
+                             </div>
+                             <input type="submit" value="SEND OTP">
+
+
+
+                    </form>
+                </div>
+               
+                <div class="register-home">
+                    <a href="index.html">Home</a>
+                </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock%}

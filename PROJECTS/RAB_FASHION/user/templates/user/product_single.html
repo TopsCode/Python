@@ -1,0 +1,222 @@
+﻿{% extends 'user\base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <nav class="woocommerce-breadcrumb mb-20"></nav>
+    </div>
+</div>
+<!--bread crumb-->
+
+<section class="product-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="product">
+                    <div class="images">
+                        <ul class="thumb-slider">
+                            <li>
+                                <img src="{{product.image.url}}" alt="image">
+                            </li>
+                        </ul>
+                    </div>
+                    <!--images-->
+
+                    <div class="summary entry-summary">
+                        <h4 class="product_title entry-title mb-10">
+                            {{product}}
+                        </h4>
+                        <!--title and company-->
+
+                        <div class="price">
+                            <ins>Rs. {{product.price}}</ins>
+                        </div>
+                        <!--price-->
+
+                        <div class="woocommerce-product-rating mb-10">
+                            <span class="star-rating">
+                                <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                                <i class="fa fa-star"></i> 
+                            </span>
+                        </div>
+                        <!--star rating-->
+
+                        {% if product.stock > 0 %}
+                            <div class="stock-info mb-10">
+                                <span>
+                                    <i class="fa fa-check-square"></i> Instock
+                                </span>
+                                <span class="product-code">Available Quantity: {{product.stock}}</span>
+                            </div>
+                        {% endif %}
+                        <!--stock-->
+
+                        <div class="item-desc mb-20">
+                            <p>
+                                {{product.description}}
+                            </p>
+                        </div>
+                        <!--item desc-->
+
+                        <form method="POST" action="{% url 'add_to_cart' %}" class="variations_form cart">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{product.id}}" />
+                            <table class="variations">
+                                <tbody>
+                                    <tr>
+                                        <td class="label">
+                                            <label>Size</label>
+                                        </td>
+
+                                        <td class="value">
+                                            <select name="size" required>
+                                                <option value="" disabled selected>Select Size</option>
+                                                {% for size in product.sizeList %}
+                                                <option value="{{size}}">{{size}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <!--size-->
+
+                                    <tr>
+                                        <td class="label">
+                                            <label>Color</label>
+                                        </td>
+
+                                        <td class="value">
+                                            <select name="color" required>
+                                                <option value="" disabled selected>Select Color</option>
+                                                {% for color in product.colorList %}
+                                                <option value="{{color}}">{{color}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <!--color-->
+                                </tbody>
+                            </table>
+
+                            <div class="single_variation_wrap">
+                                <div class="variations_button">
+                                    <div class="quantity">
+                                        <div class="label">
+                                            <label>Qty</label>
+                                        </div>
+
+                                        <div class="quantity-wrap">
+                                            <span class="minus"> - </span>
+                                            <input type="number" value="1" name="quantity" class="input-text qty" size="4" id="quantityChange">
+                                            <span class="add"> + </span>
+                                        </div>
+                                        <!--quantity-->
+                                    </div>
+
+                                    {% if "email" in request.session %}
+                                        <input type="submit" class="button alt" value="Add to Cart">
+                                        
+                                        <a href="{% url 'add_to_wishlist' product_id=product.id %}" class="button-wish">
+                                            Add to Wishlist
+                                        </a>
+                                    {% else %}
+                                        <h4>
+                                            <a href="{% url 'login' %}" class="button alt">Login to add to Cart </a>
+                                        </h4>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!--single variation-->
+                        </form>
+                        <!--form-->
+
+                        <div class="product_meta">
+                            <span class="posted_in">Category: 
+                                <a href="#" rel="tag">{{product.category}},</a>
+                                <a href="#" rel="tag">{{product.subcategory}}</a>
+                            </span>
+                        </div>
+                    </div>
+                    <!--summery-->
+
+                    <div class="woocommerce-tabs wc-tabs-wrapper hide-mobile">
+                        <ul class="tabs wc-tabs nav nav-tabs" role="tablist">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#description" data-toggle="tab">Description</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#add-info" data-toggle="tab">Additional Information</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#review" data-toggle="tab">Reviews (0) </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active panel" id="description">
+                                <h4>Product description</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tristique porttitor nibh, scelerisque commodo odio laoreet nec. Curabitur erat neque, rhoncus vehicula consectetur ac, condimentum eget lectus. Pellentesque tincidunt, dui eu gravida consectetur, orci dui laoreet odio, in venenatis tellus odio pretium felis.
+                                </p>
+                            </div>
+                            <!--description-->
+
+                            <div class="tab-pane panel" id="add-info">
+                                <h4>Additional Information </h4>
+                            </div>
+                            <!--additional information-->
+
+                            <div class="tab-pane panel" id="review">
+                                <h4>Reviews (0) </h4>
+                            </div>
+                            <!--reviews-->
+                        </div>
+                    </div>
+                    <!--only sho win desktop and tablet-->
+
+                    <div id="accordion" class=" product-desc show-mobile">
+                        <h3>Product description</h3>
+                        <div>
+                            <p>
+                                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+                                ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+                                amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+                                odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                            </p>
+                        </div>
+
+                        <h3>Additional Information</h3>
+                        <div>
+                            <p>
+                                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+                                purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+                                velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+                                suscipit faucibus urna.
+                            </p>
+                        </div>
+
+                        <h3>Reviews(0)</h3>
+                        <div>
+                            <p>
+                                Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+                                Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+                                ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+                                lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+                            </p> 
+                        </div>
+                    </div>
+                    <!--show mobile only-->
+                </div>
+                <!--product-->
+            </div>
+            <!--top-->
+        </div>
+    </div>
+</section>
+<!--single product-->
+{% endblock content %}

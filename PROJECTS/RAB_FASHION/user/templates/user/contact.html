@@ -1,0 +1,146 @@
+﻿{% extends 'user\base.html' %}
+{% load static %}
+
+{% block banner %}
+<div class="main-banner inner-banner banner-scroll">
+    <div class="fixed-banner banner-contact">
+        <div class="banner-content">
+            <div class="content-wrap mb-0 banner-overlay">
+                <div class="inner">
+                    <h2>contact us</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Contact us</li>
+                    </ol>
+                </div>
+            </div>
+            <!--content wrap-->
+        </div>
+        <!--banner content-->
+    </div>
+</div>
+{% endblock banner %}
+<!--main banner-->
+
+{% block content %} 
+    <div class="container contact-page">
+        <div class="row top mb-90">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="box text-center">                        
+                    <h4 class="contact-title">
+                        <i class="pe-7s-map-marker"></i>
+                        Address
+                    </h4>
+
+                    <p>
+                        Local street address here,
+                        State, Zip code, Country
+                    </p>
+                </div>
+            </div>
+            <!--address-->
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="box text-center">                        
+                    <h4 class="contact-title">
+                        <i class="pe-7s-call"></i>
+                        Phone & Email
+                    </h4>
+
+                    <p>
+                        1-098-3456-7890
+                        <span><a href="#">info@yourdomain.com</a></span>
+                    </p>
+                </div>
+            </div>
+            <!--phone-->
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="box text-center">                        
+                    <h4 class="contact-title">
+                        <i class="pe-7s-share"></i>
+                        Address
+                    </h4> 
+
+                    <ul class="social-icons">
+                        <li> <a href="#"><i class="fa fa-facebook"></i></a> </li>
+                        <li> <a href="#"><i class="fa fa-twitter"></i></a> </li>
+                        <li> <a href="#"><i class="fa fa-linkedin"></i></a> </li>
+                        <li> <a href="#"><i class="fa fa-instagram "></i></a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!--social-->
+        </div>
+        <!--top-->
+
+        <div class="row mb-60">
+            <div class="col-md-10 col-sm-10 col-sm-offset-1 col-xs-12">
+                <hr>
+            </div>
+        </div>
+        <!--line seperator-->
+
+        <div class="row form-wrap mb-50">
+            <div class="col-md-12 col-sm-12 col-xs-12 mb-25">
+                <h4 class="contact-title text-center">
+                    <i class="pe-7s-mail"></i>
+                    Send us a email
+                </h4> 
+            </div>
+            <!--title-->
+            
+            <div class="col-md-10 col-sm-10 col-sm-offset-1 col-xs-12">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>First Name <span>*</span></label>
+                                <input type="text" placeholder="Your First Name">
+                            </div>
+                            <!--name-->  
+
+                            <div class="form-group">
+                                <label>Last Name <span>*</span></label>
+                                <input type="text" placeholder="Your Last Name">
+                            </div>
+                            <!--name--> 
+
+                            <div class="form-group">
+                                <label>Email <span>*</span></label>
+                                <input type="text" placeholder="Your Last Name">
+                            </div>
+                            <!--name-->  
+                        </div>
+                        <!--left-->
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea placeholder="Your Message"></textarea>
+                            </div>
+                        </div>
+                        <!--right-->
+
+                        <div class="form-group col-sm-12 mb-0">
+                            <button type="submit">
+                                send message
+                            </button>
+                        </div>
+                        <!--button-->
+                    </div>
+                </form>
+            </div>                
+        </div>
+        <!--form wrap-->
+
+        <div class="row map-wrap">
+            <div class="col-md-10 col-sm-10 col-sm-offset-1 col-xs-12">
+                <div class="map-wrap overlay">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13027.97135015198!2d149.1204445793029!3d-35.28130433462935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b164d69b05c9021%3A0x500ea6ea7695660!2sCanberra+ACT+2601!5e0!3m2!1sen!2sau!4v1486457460600" width="600" height="580" style="border:0" allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </div>
+        <!--map wrap-->
+    </div>
+{% endblock content %} 

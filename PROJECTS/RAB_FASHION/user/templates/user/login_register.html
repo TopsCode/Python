@@ -1,0 +1,170 @@
+{% load static %}
+<div class="modal fade login" id="modal-login" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <h2 class="pull-left text-uppercase">My Account</h2>
+
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        
+        <div id="login" class="hidden">
+            <div class="content text-center">
+                <div class="top mb-35">
+                    <h4 class="contact-title">
+                            <i class="pe-7s-users primary-color"></i>
+                            Login Account
+                        </h4>
+                    <p>Enter your email and password to login.</p>
+                </div>
+                <!--top-->
+
+                <form action={% url 'login_page' %} method = "POST">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label>Email <span>*</span></label>
+                            <input type="email" name="email" placeholder="Your email" required>
+                        </div>
+                        <!--user name-->
+
+                        <div class="form-group col-sm-12">
+                            <label>Password <span>*</span></label>
+                            <input type="password" name="password" required>
+                        </div>
+                        <!--password-->
+
+                        <div class="form-group col-sm-6 pull-left">
+                            <div class="checkbox-wrap">
+                                <input type="checkbox" name="remember_me" value="1">
+                                <label>Remember Me</label>
+                            </div>
+                        </div>
+                        <!--checkbox-->
+
+                        <div class="form-group col-sm-6 pull-right">
+                            <a href="#" data-show="#forgot-pass" class="primary-color pull-right btn-password trigger-modal">Lost Password?  </a>
+                        </div>
+                        <!--password-->
+
+                        <div class="form-group col-sm-12">
+                            <button type="submit">Login</button>
+                        </div>
+                        <!--button-->
+                    </div>
+                </form>
+
+                <div class="or mb-15">OR</div>
+
+                <div class="row">
+                    <ul class="login-social col-sm-12">
+                        <li>
+                            <a href="#" class="fb">
+                                <i class="fa fa-facebook"></i> FACEBOOK
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="twt">
+                                <i class="fa fa-twitter"></i> TWITTER
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                Don’t have an account yet?
+                <a href="#" class="trigger-modal primary-color btn-signup" data-show="#register"> <strong>Signup Now!</strong></a>
+            </div>
+        </div>
+        <!-- login -->
+
+        <div id="register" class="hidden">
+            <div class="content text-center sign-up-block">
+            <div class="top mb-35">
+                <h4 class="contact-title">
+                    <i class="pe-7s-add-user primary-color"></i>
+                    Signup Account
+                </h4>
+                <p>Fill up the form below to signup an account.</p>
+            </div>
+            <!--top-->
+
+            <form action={% url 'registration_page' %} method="POST">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label>Email <span>*</span></label>
+                        <input type="email" placeholder="Your email" name="email" required>
+                    </div>
+                    <!--user name-->
+
+                    <div class="form-group col-sm-12">
+                        <label>Password <span>*</span></label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <!--password-->
+
+                    <div class="form-group col-sm-12">
+                        <label>Verify Password <span>*</span></label>
+                        <input type="password" name="verify_password" required>
+                    </div>
+                    <!--password-->
+
+                    <div class="form-group col-sm-12">
+                        <button type="submit">Signup</button>
+                    </div>
+                    <!--button-->
+                </div>
+            </form>
+
+            <div class="or mb-15">OR</div>
+
+            <div class="row">
+                <ul class="login-social col-sm-12">
+                    <li>
+                        <a href="#" class="fb">
+                            <i class="fa fa-facebook"></i> FACEBOOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twt">
+                            <i class="fa fa-twitter"></i> TWITTER
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            Have an account?
+            <a href="#" class="primary-color btn-login trigger-modal" data-show="#login"> <strong>Login Now!</strong></a>
+            </div>
+        </div>
+        <!-- register -->
+
+        <div id="forgot-pass" class="hidden">
+            <div class="content text-center forget-password-block">
+            <div class="top mb-35">
+                <h4 class="contact-title">
+                    <i class="pe-7s-door-lock primary-color"></i>
+                    Lost Password
+                </h4>
+                <p>Fill up the form below to Retrieve your password.</p>
+            </div>
+            <!--top-->
+
+            <form action={% url 'forgot_password_page' %} method="POST">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label>Email <span>*</span></label>
+                        <input type="email" placeholder="Your email" name="email" required>
+                    </div>
+                    <!--user name-->
+                    <div class="form-group col-sm-12">
+                        <button type="submit">Reset</button>
+                    </div>
+                    <!--button-->
+                </div>
+            </form> 
+            </div>
+        </div>            
+        <!-- forget password -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

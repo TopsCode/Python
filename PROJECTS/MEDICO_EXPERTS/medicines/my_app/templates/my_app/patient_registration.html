@@ -1,0 +1,75 @@
+
+{% extends "my_app/base_index.html" %}
+
+{% block content %}
+<!-- register -->
+        <div class="register">
+                <div class="container">
+                    <h2>Register Here</h2>
+                    <div class="login-form-grids">
+                    
+                     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab"  href="{% url 'registerpage' %}" role="tab" aria-controls="home"
+                                aria-selected="true">Doctor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" href="{% url 'registerpatient'%}"" role="tab" aria-controls="profile"
+                                aria-selected="false">Patient</a>
+                        </li>
+                    </ul>
+                    &nbsp;
+
+    				<form action="{% url 'register_user' %}" method="post">
+                        {% csrf_token %}
+                        {%  if msg%}
+                        <div class="alert alert-success" role="alert">
+                            {{msg}}
+                          </div>
+                        {% endif %}
+    
+
+                    <h3 style="color: black">Apply as a Patient</h3>
+                    &nbsp;
+                    <div><input type="hidden" value="patient" name="role" ></div>
+                    <div><input type="text" placeholder="First Name..." required=" " name="firstname" ></div>
+                    &nbsp;
+                    <div><input type="text" placeholder="Last Name..." required=" " name="lastname" ></div>
+                    
+                    <div>
+                            <input type="password" placeholder="Password *" required="" name="password" />
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Confirm Password *" name="cnfpassword" required="" />
+                        </div>
+                        &nbsp;
+                        <div>
+							<select class="form-control" name="gender">
+								<option >Gender</option>
+								<option>Male</option>
+								<option>Female</option>
+								<option>other</option>
+							</select>
+                            </div>
+                            &nbsp;
+                            <div>
+                                   <input type="email" placeholder="Your Email *" required="" name="email" />
+                                </div>
+                                &nbsp;
+                                <div class="form-group">
+                                        <label for="date">Birthdate</label>
+                                    <input type="date" class="form-control" name="birthdate" placeholder="Date of Birth"
+                                        value="" />
+                                </div>
+                                
+                                    <input type="submit" value="Register">
+				</form>
+            </div>
+           
+			<div class="register-home">
+				<a href="{% url 'index' %}">Home</a>
+			</div>
+		</div>
+	</div>
+<!-- //register -->
+{% endblock %}

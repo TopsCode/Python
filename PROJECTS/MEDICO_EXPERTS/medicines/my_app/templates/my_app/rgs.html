@@ -1,0 +1,171 @@
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+<link href="{% static '/doctorfinder/main.css' %}" rel="stylesheet">
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <h3>Doctor Finder</h3>
+            <p>A platform for all your health needs.</p>
+            <p>Register and join a community which supports and take cares of all your health needs.</p>
+            <form method="GET" action="{% url 'login' %}"><input type="submit" name="" value="Login" /></form> <br />
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                        aria-selected="true">Doctor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                        aria-selected="false">Patient</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <form class="tab-pane fade show active" id="home" role="tabpanel" method="POST" action="{% url 'registeruser' %}">
+                    {% csrf_token %}
+                    {% if message %}
+                    <p class="text-danger text-center">{{message}}</p>
+                    {% endif %}
+                    <h3 class="register-heading">Apply as a Doctor</h3>
+                    <div class="row register-form">
+                        <input type="hidden" name="role" value="doctor"/>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="firstname" placeholder="First Name *"
+                                    value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="lastname" placeholder="Last Name *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password *"
+                                    value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="confirmpassword" placeholder="Confirm Password *"
+                                    value="" />
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="gender">
+                                    <option class="hidden" selected disabled>Gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>other</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Your Email *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" minlength="10" maxlength="10" name="phone" class="form-control"
+                                    placeholder="Your Phone *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="speciality">
+                                    <option class="hidden" selected disabled>Please select your Speciality</option>
+                                    <option>Cardiologist</option>
+                                    <option>Surgeon</option>
+                                    <option>Radiologist</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="city">
+                                    <option class="hidden" selected disabled>City</option>
+                                    <option>Ahmedabad</option>
+                                    <option>Surat</option>
+                                    <option>Rajkot</option>
+                                    <option>Vadodara</option>
+                                    <option>Mumbai</option>
+                                    <option>Pune</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" class="form-control" name="birthdate" placeholder="Date of Birth"
+                                    value="" />
+                            </div>
+                            <input type="submit" class="btnRegister" value="Register" />
+                </form>
+            </div>
+        </div>
+        <form class="tab-pane fade show" action="{% url 'registeruser' %}" method="POST" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            {% csrf_token %}
+            <h3 class="register-heading">Register as a Patient</h3>
+            <input type="hidden" name="role" value="patient"/>
+            <div class="row register-form">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="firstname" placeholder="First Name *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="lastname" placeholder="Last Name *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" maxlength="10" minlength="10" name="phone" class="form-control" placeholder="Phone *"
+                            value="" />
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="confirm" placeholder="Confirm Password *"
+                            value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" name="birthdate" placeholder="Date of Birth"
+                            value="" />
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="city">
+                            <option class="hidden" selected disabled>City</option>
+                            <option>Ahmedabad</option>
+                            <option>Surat</option>
+                            <option>Rajkot</option>
+                            <option>Vadodara</option>
+                            <option>Mumbai</option>
+                            <option>Pune</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="gender">
+                            <option class="hidden" selected disabled>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>other</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btnRegister" value="Register" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    (function validateForm() {
+        var isValid = true;
+        $('#home').each(function () {
+            debugger;
+            if ($(this).val() === '')
+                isValid = false;
+        });
+        return isValid;
+    }())
+</script>
+</div>

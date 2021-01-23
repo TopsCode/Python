@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+<h1 style="text-align:center">INVOICE</h1>
+<h2>Hello {{data.uid.firstname}}</h2>
+<p>Your order has been confirmed</p>
+
+<table style="width:100%">
+  <tr>
+    
+    <th>Product</th>
+    <th>Quantity </th> 
+    <th>Total</th>
+    <th>status</th>
+  </tr>
+  <tr>
+    <td>{{data.order_id.pid.pname}}</td>
+    <td>{{data.order_id.qty}}</td>
+    <td>Rs. {{data.order_id.price}} 
+        <p>(Qty. {{data.order_id.qty}} x Rs. {{data.order_id.pid.pprice}})</p> 
+    </td>
+    <td>{{data.order_id.status}}</td>
+  </tr>
+ 
+</table>
+<p>Thank you for using Aayuhub.. </p>
+
+</body>
+</html>

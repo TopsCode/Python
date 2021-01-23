@@ -1,0 +1,99 @@
+{% load static %}
+<header class="header-2">
+    <div class="container">
+        <div class="row top">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'user\assets\images\logo.png' %}" alt="Logo">
+                </a>
+                <!--logo-->
+
+                <div class="header-right">
+                    
+                    {% if "email" in request.session %}
+                        <ul class="site-header-cart menu on-hover">
+                            {% include 'user\header_wishlist.html' %}
+                            <!--wish list-->
+
+                            {% include 'user\header_cart.html' %}
+                            <!--cart-->
+                        </ul>
+                        
+                        <ul class="login">
+                            <li>
+                                <span>Welcome {{request.session.username}}</span>
+                            </li>
+                            <li class="register">
+                                <a href="{% url 'profile' %}"><i class="fa fa-edit"></i><span>Profile</span></a>
+                            </li>
+                            <li class="register">
+                                <a href="{% url 'orders' %}"><i class="fa fa-edit"></i><span>Orders</span></a>
+                            </li>
+                            <li class="register">
+                                <a href="{% url 'logout' %}"><i class="fa fa-edit"></i><span>logout</span></a>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <ul class="login">
+                            <li>
+                                <a href="{% url 'login' %}" class="btn-login"><i class="pe-7s-users"></i><span>Login</span></a>
+                            </li>
+                            
+                            <li class="register">
+                                <a href="{% url 'register' %}"><i class="fa fa-edit"></i><span>register</span></a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+                <!--right-->
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--button-->
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="container">
+                <ul class="nav navbar-nav">
+
+                    <li class="mega-link dropdown">
+                        <a href="{% url 'women' %}" class="dropdown-toggle">Women’s </a>
+                    </li>
+
+                    <li class="mega-link dropdown">
+                        <a href="{% url 'men' %}" class="dropdown-toggle">Men’s </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="{% url 'accessories' %}" class="dropdown-toggle">Accessories</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Pages</a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><a href="{% url 'about' %}">About us</a></li>
+                            <li><a href="{% url 'contact' %}">Contact us</a></li>
+                            <li><a href="{% url 'support' %}">Support</a></li>   
+                        </ul>
+                    </li> 
+
+                    <li class="dropdown">
+                        <a href="{% url 'blog' %}" class="dropdown-toggle">Blog</a>
+                    </li> 
+                </ul>
+            </div>
+            <!--container-->                
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</header>

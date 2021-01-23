@@ -1,0 +1,241 @@
+{% extends "my_app/base_index.html" %}
+
+{% block content %}
+
+
+<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active"></li>
+				
+			</ol>
+			
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+	<div class="products">
+		<div style="" class="container">
+			<div class="agileinfo_single">
+				<div>
+					<h2 style="font-size: 40px;">{{obj.medicine_name}}</h2>
+					<h4>Written by {{obj.medicine_doc}}</h4>
+				</div>
+				<div style="display: block;margin-left: auto;margin-right: auto;width:30%">
+					<img style="height: 400px; width:500px;" id="example" src="{{obj.medicines_pic.url}}" alt=" " class="img-responsive">
+				</div>
+
+					<div class="w3agile_description">
+						<h4 style="font-size: 30px;">Description :</h4>
+						<p>{{obj.medicine_description}}</p>
+					</div>
+					<div class="snipcart-item block">
+						<div class="snipcart-thumb agileinfo_single_right_snipcart">
+							<h4 class="m-sing">{{obj.medicine_price}} 
+            </div>
+            <div class="w3agile_description">
+              <h4 style="font-size: 30px;">Usage :</h4>
+              <p>{{obj.medicine_usage}}</p>
+            </div>
+            <div class="w3agile_description">
+              <h4 style="font-size: 30px;">Benefits :</h4>
+              <p>{{obj.medicine_benefits}}</p>
+			</div>
+			<div class="w3agile_description">
+				<h4 style="font-size: 30px;">Side Effects :</h4>
+				<p>{{obj.medicine_sideeffects}}</p>
+			  </div>
+			  
+											</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- new -->
+	<!-- <div class="newproducts-w3agile">
+		<div class="container">
+			<h3>New offers</h3>
+				<div class="agile_top_brands_grids">
+					<div class="col-md-3 top_brand_left-1">
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="products.html"><img title=" " alt=" " src="images/14.png"></a>		
+												<p>Fried-gram</p>
+												<div class="stars">
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star gray-star" aria-hidden="true"></i>
+												</div>
+													<h4>$35.99 <span>$55.00</span></h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="add" value="1">
+														<input type="hidden" name="business" value=" ">
+														<input type="hidden" name="item_name" value="Fortune Sunflower Oil">
+														<input type="hidden" name="amount" value="35.99">
+														<input type="hidden" name="discount_amount" value="1.00">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="return" value=" ">
+														<input type="hidden" name="cancel_return" value=" ">
+														<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 top_brand_left-1">
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="products.html"><img title=" " alt=" " src="images/15.png"></a>		
+												<p>Navaratan-dal</p>
+												<div class="stars">
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star gray-star" aria-hidden="true"></i>
+												</div>
+													<h4>$30.99 <span>$45.00</span></h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart">
+															<input type="hidden" name="add" value="1">
+															<input type="hidden" name="business" value=" ">
+															<input type="hidden" name="item_name" value="basmati rise">
+															<input type="hidden" name="amount" value="30.99">
+															<input type="hidden" name="discount_amount" value="1.00">
+															<input type="hidden" name="currency_code" value="USD">
+															<input type="hidden" name="return" value=" ">
+															<input type="hidden" name="cancel_return" value=" ">
+															<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 top_brand_left-1">
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="products.html"><img src="images/16.png" alt=" " class="img-responsive"></a>
+												<p>White-peasmatar</p>
+												<div class="stars">
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star gray-star" aria-hidden="true"></i>
+												</div>
+													<h4>$80.99 <span>$105.00</span></h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="add" value="1">
+														<input type="hidden" name="business" value=" ">
+														<input type="hidden" name="item_name" value="Pepsi soft drink">
+														<input type="hidden" name="amount" value="80.00">
+														<input type="hidden" name="discount_amount" value="1.00">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="return" value=" ">
+														<input type="hidden" name="cancel_return" value=" ">
+														<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 top_brand_left-1">
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="products.html"><img title=" " alt=" " src="images/17.png"></a>		
+												<p>Channa-dal</p>
+												<div class="stars">
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star blue-star" aria-hidden="true"></i>
+													<i class="fa fa-star gray-star" aria-hidden="true"></i>
+												</div>
+													<h4>$35.99 <span>$55.00</span></h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="add" value="1">
+														<input type="hidden" name="business" value=" ">
+														<input type="hidden" name="item_name" value="Fortune Sunflower Oil">
+														<input type="hidden" name="amount" value="35.99">
+														<input type="hidden" name="discount_amount" value="1.00">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="return" value=" ">
+														<input type="hidden" name="cancel_return" value=" ">
+														<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+						<div class="clearfix"> </div>
+				</div>
+		</div>
+	</div> -->
+<!-- //new -->
+{% endblock %}

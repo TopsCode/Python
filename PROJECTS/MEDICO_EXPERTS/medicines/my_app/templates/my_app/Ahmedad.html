@@ -1,0 +1,31 @@
+{% extends "my_app/base_index.html" %}
+
+{% block content %}
+&nbsp;
+<h1 style="margin-left:115px ;color: black;">Ahmedabad</h1>
+&nbsp;
+<div style="margin-left:115px; max-width: 1100px;">
+<table  style="text-align: center;color: black;" class="table" >
+    <thead>
+      <tr>
+        <th style="text-align: center;" scope="col">Sr.no</th>
+        <th style="text-align: center;" scope="col">Name</th>
+        <th style="text-align: center;" scope="col">Area</th>
+        <th style="text-align: center;" scope="col">Cotact Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <th style="text-align: center;" scope="row">{{i.id}}</th>
+        <td  style="text-align: center";>{{i.s_name}}</td>
+        <td>{{i.s_area}}</td>
+        <td>{{i.s_contact}}</td>
+        <td><a>view more</a></td>
+      </tr>
+      {% endfor %}
+     </tbody>
+  </table>
+
+</div>
+{% endblock %}

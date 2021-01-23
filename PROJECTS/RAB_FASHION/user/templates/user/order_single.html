@@ -1,0 +1,72 @@
+{% extends 'user\base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <nav class="woocommerce-breadcrumb mb-20"></nav>
+    </div>
+</div>
+<!--bread crumb-->
+
+<section class="cart-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="woocommerce">
+                    <table class="shop_table shop_table_responsive cart wish-list">
+                        <thead>
+                            <tr>
+                                <th class="product-name">My Order</th>
+                                <th class="product-price">Price x Qty</th>
+                                <th class="product-status">Total</th>
+                                <th class="product-quantity">Data</th>
+                                <th class="product-subtotal">Data</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for order_item in order_items %}
+                        <form method = "POST" action = "{% url 'wishlist_to_cart' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{order_item.id}}" name="order_item_id" />
+                            <tr class="cart_item">
+                                <td class="product-name" data-title="Product">
+                                    <a href="{% url 'product_single' id=order_item.product.id title=order_item.product.title %}" class="cart-product">
+                                        <img style="max-width:30%" src="{{order_item.product.image.url}}" alt="Product thumbnail">
+                                    </a>
+
+                                    <div class="product-info">
+                                        <h6> {{order_item.product.title}}  </h6>
+                                        <h6> Brand : {{order_item.product.productManager}}  </h6>
+                                        <ul class="product-info">
+                                            <li>Category: {{order_item.product.category}}, {{order_item.product.subcategory}} </li>
+                                            <li>Color: {{order_item.color}}</li>
+                                            <li>Size: {{order_item.size}}</li>
+                                        </ul>
+                                    </div>
+                                    <!--product info-->
+                                </td>
+
+                                <td>{{order_item.price}} x {{order_item.quantity}}</td>
+
+                                <td></td>
+
+                                <td></td>
+
+                                <td></td>
+
+                            </tr>
+                            <!--cart item--> 
+                        </form>
+                        {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

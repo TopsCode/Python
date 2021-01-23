@@ -1,0 +1,51 @@
+{% extends "my_app/base_index.html" %}
+
+{% block content %}
+
+
+<!-- //navigation -->
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="{% url 'index' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">Login Page</li>
+			</ol>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+<!-- login -->
+<div class="login">
+		<div class="container">
+			<h2>Login Form</h2>
+			
+		
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+             <form action="{% url 'login_evalute' %}" method="POST">
+							{% csrf_token %}
+							{%  if msg %}
+                    		<div class="alert alert-success" role="alert">
+                        		{{msg}}
+                      		</div>
+							{% endif %}
+							<div class="form-group">
+								<select class="form-control" name="role">
+									<option class="hidden" selected disabled>Role</option>
+									<option>doctor</option>
+									<option>patient</option>
+								</select>
+							</div>
+					<input type="email" placeholder="Email Address" name="email" required=" " >
+					<input type="password" placeholder="Password" name="password" required=" " >
+					<div class="forgot">
+						<a href="{% url 'forgotpage' %}">Forgot Password?</a>
+					</div>
+					<input type="submit"  value="Login">
+				</form>
+			</div>
+			<h4>For New People</h4>
+			<p><a href="{% url 'registerpage' %}">Register Here</a> (Or) go back to <a href="{% url 'index' %}">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+		</div>
+	</div>
+
+{% endblock %}
