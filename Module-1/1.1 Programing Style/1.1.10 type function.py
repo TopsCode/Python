@@ -11,4 +11,4 @@ print(type(name))
 
 price=4.5
 print(price)
-print(type(price))
+print(type(price))  
