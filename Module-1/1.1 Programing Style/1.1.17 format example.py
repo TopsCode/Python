@@ -9,7 +9,8 @@ print(greeting)
 
 # Positional Arguments: 
 #
-# You can use positional placeholders {} to specify where the arguments will go. The first placeholder gets the first argument, the second placeholder gets the second argument, and so on.
+# You can use positional placeholders {} to specify where the arguments 
+# will go. The first placeholder gets the first argument, the second placeholder gets the second argument, and so on.
 
 greeting = "The first number is {} and the second is {}.".format(10, 20)
 print(greeting)
@@ -35,7 +36,8 @@ print(greeting)
 
 # Formatting Numbers: 
 # 
-# You can format numbers to control the number of decimal places, add commas, or specify other formats.
+# You can format numbers to control the number of decimal places, add commas, 
+# or specify other formats.
 
 pi = 3.14159
 formatted_string = "The value of pi is {:.2f}".format(pi)
