@@ -13,4 +13,4 @@ with open("user_data.json", "w") as file:
     # Write the dictionary to the file in JSON format
     json.dump(user_data, file, indent=4)
 
-print("Data has been written to user_data.json")
+print("Data added !!")
