@@ -5,4 +5,4 @@ data = f.readlines()
 print(data)
 
 for f in data:
-    print(f)
+    print(f) 
