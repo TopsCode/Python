@@ -1,0 +1,11 @@
+1) create your tkinter file   e.g.  myapp.py
+
+2) go to directory of that file 
+
+3) install pyinstaller 
+
+    pip insatll pyinstaller 
+
+4) execute below command 
+
+    pyinstaller --onefile --windowed myapp.py
