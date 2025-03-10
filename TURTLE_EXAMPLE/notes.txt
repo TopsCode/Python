@@ -1,0 +1,6 @@
+Changing the Turtle's Appearance
+
+
+turtle.shape("turtle")  # Change the turtle shape
+turtle.color("blue")     # Change the pen color
+turtle.pensize(3)        # Change the pen thickness
