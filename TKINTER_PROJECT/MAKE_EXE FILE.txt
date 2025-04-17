@@ -1,0 +1,14 @@
+#pip install pyinstaller
+
+#pyinstaller --onefile --windowed your_script.py
+
+--onefile: Creates a single .exe file.
+
+--windowed: Hides the console window (useful for GUI apps).
+
+==>>If your script includes images or other files, use this:
+
+pyinstaller --onefile --windowed --add-data "pizza.png;." your_script.py
+
+
+====>>>>dist/your_script.exe
